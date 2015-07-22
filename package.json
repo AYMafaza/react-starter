@@ -1,0 +1,44 @@
+{
+  "name": "prism-web",
+  "version": "0.0.1",
+  "description": "starter solution with hapi, alt.js, react, and other 'good stuff'",
+  "main": "server.js",
+  "private": true,
+  "scripts": {
+    "build": "gulp build",
+    "start": "gulp",
+    "lint": "eslint . --ext .js --ext .jsx",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "rramdat",
+  "license": "ISC",
+  "dependencies": {
+    "alt": "^0.17.1",
+    "hapi": "^8.8.0",
+    "react": "^0.13.3",
+    "react-router": "^0.13.3",
+    "underscore": "^1.8.3"
+  },
+  "devDependencies": {
+    "babel-core": "^5.7.4",
+    "babel-eslint": "^3.1.23",
+    "babel-loader": "^5.3.2",
+    "browser-sync": "^2.8.0",
+    "del": "^1.2.0",
+    "eslint": "^0.24.1",
+    "eslint-loader": "^0.14.2",
+    "eslint-plugin-react": "^2.7.1",
+    "flowcheck": "^0.2.7",
+    "flowcheck-loader": "^1.0.0",
+    "gulp": "^3.9.0",
+    "gulp-concat": "^2.6.0",
+    "gulp-imagemin": "^2.3.0",
+    "gulp-sass": "^2.0.4",
+    "gulp-typescript": "^2.8.0",
+    "gulp-util": "^3.0.6",
+    "node-libs-browser": "^0.5.2",
+    "react-hot-loader": "^1.2.8",
+    "webpack": "^1.10.1",
+    "webpack-dev-server": "^1.10.1"
+  }
+}
