@@ -51,14 +51,13 @@ $ npm install                   # Install Node.js components listed in ./package
 ### How to Build
 
 ```shell
-$ gulp build                    # or, `gulp build`
+$ npm run build                    # or, `gulp build`
 ```
 
 ### How to Run
 
 ```shell
-$ gulp                          # or, `gulp`
+$ npm start                          # or, `gulp`
 ```
 
-This will start a lightweight development server with LiveReload and
-synchronized browsing across multiple devices and browsers.
+This will start a lightweight development server with BrowserSync.
