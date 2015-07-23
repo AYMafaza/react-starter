@@ -20,7 +20,7 @@ let WorkspaceView = React.createClass({
     return (
       <div>
         <ul>
-        {this.props.workspace.views.map((view) => {
+        {this.props.workspace.Views.map((view) => {
           return (
             <li>
               {view}

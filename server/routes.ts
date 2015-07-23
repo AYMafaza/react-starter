@@ -5,6 +5,17 @@ import Hapi = require('hapi');
 var routes: Array<Hapi.IRouteConfiguration> = new Array<Hapi.IRouteConfiguration>();
 
 // main application routes for our server
+routes.push({
+    method: 'GET',
+    path: '/{path*}',
+    handler: {
+ 		directory: {
+            path: './client',
+            listing: true,
+            index: true
+        }
+    }
+});
 
 routes.push({
   method: 'GET',

@@ -7,16 +7,15 @@ class WorkspaceActions {
   }
 
   fetchWorkspace() {
+    var _this = this;
     // we dispatch an event here so we can have "loading" state.
-    this.dispatch();
+    _this.dispatch();
 
     WorkspaceFetcher.fetch()
-      .then((workspace) => {
-        // we can access other actions within our action through `this.actions`
-        this.actions.loadWorkspace(workspace);
-      })
-      .catch((errorMessage) => {
-        this.actions.workspaceError(errorMessage);
+      .then(function(json) {
+        _this.actions.loadWorkspace(json);
+      }).catch(function(err) {
+        _this.actions.workspaceError(err.message);
       });
   }
 
