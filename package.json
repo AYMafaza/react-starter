@@ -16,9 +16,7 @@
     "alt": "^0.17.1",
     "es6-promise": "^2.3.0",
     "hapi": "^8.8.0",
-    "install": "^0.1.8",
     "isomorphic-fetch": "^2.1.1",
-    "npm": "^2.13.2",
     "react": "^0.13.3",
     "react-router": "^0.13.3",
     "underscore": "^1.8.3"
