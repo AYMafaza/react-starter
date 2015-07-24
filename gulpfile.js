@@ -8,6 +8,7 @@ var ts = require('gulp-typescript');
 var webpack = require('webpack');
 var webpackConfig = require('./webpack.development.js');
 var webpackOptions = Object.create(webpackConfig);
+var exec = require('child_process').exec;
 
 // modify some webpack config options
 webpackOptions.debug = true;
@@ -15,15 +16,25 @@ webpackOptions.debug = true;
 // create a single instance of the compiler
 var webpackCompiler = webpack(webpackOptions);
 
-// static server + watching scss/html/js files
+// start hapi server
 gulp.task('serve', ['build'], function() {
-    browserSync.init({
-      server: './client'
-    });
+  exec('node server/build/server.js', function (err, stdout, stderr) {
+    console.log(stdout);
+    console.log(stderr);
+  });
+});
 
-    gulp.watch('client/styles/*.scss', ['sass']);
-    gulp.watch('client/*.html').on('change', browserSync.reload);
-    gulp.watch('client/dist/*.js').on('change', browserSync.reload);
+// launch server w browser sync
+gulp.task('sync', ['serve'], function() {
+  browserSync.init({
+    proxy: 'http://localhost:3000',
+    port: 4000,
+    browser: ['google-chrome']
+  });
+
+  gulp.watch('client/styles/*.scss', ['sass']);
+  gulp.watch('client/*.html').on('change', browserSync.reload);
+  gulp.watch('client/dist/*.js').on('change', browserSync.reload);
 });
 
 // build task without running
