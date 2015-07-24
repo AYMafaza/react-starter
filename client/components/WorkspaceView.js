@@ -1,5 +1,6 @@
 import React from 'react';
 import _ from 'underscore';
+import WorkspaceViewItem from './WorkspaceViewItem';
 
 let WorkspaceView = React.createClass({
   render() {
@@ -22,9 +23,7 @@ let WorkspaceView = React.createClass({
         <ul>
         {this.props.workspace.Views.map((view) => {
           return (
-            <li>
-              {view}
-            </li>
+            <WorkspaceViewItem key={view} data={view}/>
           );
         })}
         </ul>
