@@ -25,10 +25,10 @@ export class WorkspaceRepository {
 
     constructor() {
       this.MockWorkspace = new Workspace({ Id: 100, Name: 'Default Workspace', Views: [] });
-      this.MockWorkspace.AddView('TR');
-      this.MockWorkspace.AddView('TR');
-      this.MockWorkspace.AddView('TR');
-      this.MockWorkspace.AddView('TR');
+      this.MockWorkspace.AddView('A1');
+      this.MockWorkspace.AddView('A2');
+      this.MockWorkspace.AddView('A3');
+      this.MockWorkspace.AddView('A4');
     }
 
     getDefault() {
