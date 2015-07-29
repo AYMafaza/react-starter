@@ -9,6 +9,23 @@ var webpack = require('webpack');
 var webpackConfig = require('./webpack.development.js');
 var webpackOptions = Object.create(webpackConfig);
 var exec = require('child_process').exec;
+var jest = require('jest-cli');
+
+var jestConfig = {
+  rootDir: "./client",
+  scriptPreprocessor: "../preprocessor.js",
+  unmockedModulePathPatterns: [
+    "react",
+    "react-tools",
+    "nock"
+  ]
+};
+
+gulp.task('test', function(done) {
+    jest.runCLI({ config : jestConfig }, ".", function() {
+        done();
+    });
+});
 
 // modify some webpack config options
 webpackOptions.debug = true;

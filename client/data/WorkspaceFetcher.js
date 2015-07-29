@@ -5,12 +5,11 @@ var Promise = es6Promise.Promise;
 
 var WorkspaceFetcher = {
   fetch: function () {
-    debugger;
     return new Promise(function (resolve, reject) {
-      fetch('/workspace/default', { method: 'get' })
+      fetch('http://localhost:3000/workspace/default', { method: 'get' })
         .then(function(response) {
             if (response.status !== 200) {
-                reject('Bad response from server');
+                reject({ message: 'Bad response from server' });
             }
             else {
                 resolve(response.json());

@@ -8,7 +8,7 @@
     "build": "gulp build",
     "start": "gulp",
     "lint": "eslint . --ext .js --ext .jsx",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "gulp test"
   },
   "author": "rramdat",
   "license": "ISC",
@@ -38,6 +38,8 @@
     "gulp-sass": "^2.0.4",
     "gulp-typescript": "^2.8.0",
     "gulp-util": "^3.0.6",
+    "jest-cli": "^0.4.17",
+    "nock": "^2.9.1",
     "node-libs-browser": "^0.5.2",
     "react-hot-loader": "^1.2.8",
     "webpack": "^1.10.1",
