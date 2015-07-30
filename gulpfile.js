@@ -12,6 +12,7 @@ var exec = require('child_process').exec;
 var jest = require('jest-cli');
 
 var jestConfig = {
+  collectCoverage: true,
   rootDir: "./client",
   scriptPreprocessor: "../preprocessor.js",
   unmockedModulePathPatterns: [
@@ -22,9 +23,9 @@ var jestConfig = {
 };
 
 gulp.task('test', function(done) {
-    jest.runCLI({ config : jestConfig }, ".", function() {
-        done();
-    });
+  jest.runCLI({ config : jestConfig, verbose: true }, "./client", function() {
+      done();
+  });
 });
 
 // modify some webpack config options
@@ -102,4 +103,4 @@ gulp.task('sass', function() {
         .pipe(browserSync.stream());
 });
 
-gulp.task('default', ['serve']);
+gulp.task('default', ['sync']);
