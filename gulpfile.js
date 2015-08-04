@@ -1,15 +1,18 @@
 var gulp = require('gulp');
-var gutil = require('gulp-util');
-var browserSync = require('browser-sync').create();
-var sass = require('gulp-sass');
 var imagemin = require('gulp-imagemin');
-var del = require('del');
+var istanbul = require('gulp-istanbul');
+var mocha = require('gulp-mocha');
+var sass = require('gulp-sass');
 var ts = require('gulp-typescript');
+var gutil = require('gulp-util');
+
+var browserSync = require('browser-sync').create();
+var exec = require('child_process').exec;
+var del = require('del');
+var jest = require('jest-cli');
 var webpack = require('webpack');
 var webpackConfig = require('./webpack.development.js');
 var webpackOptions = Object.create(webpackConfig);
-var exec = require('child_process').exec;
-var jest = require('jest-cli');
 
 var jestConfig = {
   collectCoverage: true,
@@ -23,9 +26,19 @@ var jestConfig = {
 };
 
 gulp.task('test', function(done) {
-  jest.runCLI({ config : jestConfig, verbose: true }, "./client", function() {
-      done();
-  });
+  gulp.src('server/build/**/*.js')
+    .pipe(istanbul({ includeUntested: true })) // Covering files
+    .pipe(istanbul.hookRequire()) // Force `require` to return covered files
+    .on('finish', function () {
+      gulp.src('server/build/test/*.js')
+        .pipe(mocha())
+        .pipe(istanbul.writeReports()) // Creating the reports after tests ran
+        .pipe(istanbul.enforceThresholds({ thresholds: { global: 90 } })) // Enforce a coverage of at least 90%
+        .on('error', function(e) { gutil.log(e) })
+        .on('end', function () {
+          done();
+        });
+    });
 });
 
 // modify some webpack config options
@@ -69,9 +82,6 @@ gulp.task('clean', function(callback) {
 gulp.task('webpack', function(callback) {
 	webpackCompiler.run(function(err, stats) {
 		if (err) throw new gutil.PluginError('webpack-build', err);
-    gutil.log('[webpack-build]', stats.toString({
-      // output options
-    }));
 		callback();
 	});
 });
